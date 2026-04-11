@@ -7,6 +7,7 @@
 #include <memory>
 #include <cstdint>
 #include <vector>
+#include <string>
 #include <unordered_map>
 #include <set>
 #include <map>
@@ -58,6 +59,9 @@ namespace GBE
 
         // copy buffer to memory
         void CopyBuffer(uint16_t address, const void *data, uint16_t size);
+
+        // dump a memory range as uppercase hexadecimal bytes separated by spaces
+        std::string DumpMemory(uint16_t address, uint16_t size) const;
 
         void Init();
         void Reset();

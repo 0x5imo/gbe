@@ -1,5 +1,7 @@
 #include "Memory.h"
 #include <iostream>
+#include <sstream>
+#include <iomanip>
 
 namespace GBE
 {
@@ -85,6 +87,22 @@ namespace GBE
         {
             Set(i + address, static_cast<const uint8_t *>(data)[i]);
         }
+    }
+
+    std::string Memory::DumpMemory(uint16_t address, uint16_t size) const
+    {
+        std::ostringstream stream;
+        stream << std::uppercase << std::hex << std::setfill('0');
+
+        for (uint16_t i = 0; i < size; i++)
+        {
+            if (i > 0)
+                stream << ' ';
+
+            stream << std::setw(2) << static_cast<uint32_t>(Get(address + i));
+        }
+
+        return stream.str();
     }
 
     void Memory::Init()

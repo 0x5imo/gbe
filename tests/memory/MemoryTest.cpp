@@ -77,4 +77,19 @@ GBE_TEST_SUITE(MemoryTest)
         // assert
         CHECK_EQ(memory.Get(addressToSet), valueToSet);
     }
+
+    TEST_CASE("DumpMemory")
+    {
+        // arrange
+        memory.Set(8, 0x12);
+        memory.Set(9, 0xAB);
+        memory.Set(10, 0x00);
+        memory.Set(11, 0xFF);
+
+        // act
+        std::string dump = memory.DumpMemory(8, 4);
+
+        // assert
+        CHECK_EQ(dump, "12 AB 00 FF");
+    }
 }
